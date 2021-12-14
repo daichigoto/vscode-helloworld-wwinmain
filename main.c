@@ -11,7 +11,7 @@
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
-int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hInsetance2, PWSTR pCmdLine, int nCmdShow)
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
 
   // Register the window class.
@@ -70,12 +70,12 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
   case WM_PAINT:
     {
-        PAINTSTRUCT ps;
-        HDC hdc = BeginPaint(hwnd, &ps);
+      PAINTSTRUCT ps;
+      HDC hdc = BeginPaint(hwnd, &ps);
 
-        // All painting occurs here, between BeginPaint and EndPaint.
-        FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
-        EndPaint(hwnd, &ps);
+      // All painting occurs here, between BeginPaint and EndPaint.
+      FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
+      EndPaint(hwnd, &ps);
     }
     return 0;
   }
