@@ -25,7 +25,12 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
     RegisterClass(&wc);
 
-MessageBox(NULL, "hoge", "DEBUG", MB_OK);
+if (RegisterClass(&wc)) {
+  MessageBox(NULL, L"RegisterClass OK", L"DEBUG", MB_OK);
+}
+else {
+  MessageBox(NULL, L"RegisterClass NG", L"DEBUG", MB_OK);
+}
 
 
     // Create the window.
