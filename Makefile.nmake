@@ -1,0 +1,34 @@
+CMD=	winmain
+
+CC=	cl.exe
+CFLAGS=	/c /source-charset:utf-8
+
+LINK=	link.exe
+LIBS=	user32.lib
+LFLAGS=
+
+EXIST=	cmd.exe /C if exist
+
+all:	build
+
+build:	$(CMD).exe
+
+$(CMD).exe: $(CMD).obj
+	$(LINK) $(LFLAGS) $(LIBS) *.obj
+	dir
+
+.c.o:
+	$(CC) $(CFLAGS) $*.c
+
+run:	build
+	$(CMD).exe
+
+clean:
+	$(EXIST) $(CMD).obj del *.obj
+	$(EXIST) $(CMD).exe del $(CMD).exe
+	dir
+
+corruption-run: clean
+	$(CC) /c $(CMD).c
+	$(LINK) $(LFLAGS) $(LIBS) *.obj
+	$(CMD).exe

@@ -1,4 +1,4 @@
-CMD=	helloworld.exe
+CMD=	winmain.exe
 
 SRCS=	$(wildcard *.c)
 OBJS=	$(SRCS:.c=.o)
@@ -7,13 +7,16 @@ CC=	clang
 CFLAGS+=-g
 EXIST=	cmd.exe //C if exist
 
-build: $(CMD)
+build:	$(CMD)
 
-$(CMD): $(OBJS)
+$(CMD):	$(OBJS)
 	$(CC) $(CFLAGS) -o $(CMD) $(OBJS)
 
 .c.o:
 	$(CC) -c $< -o $@
+
+run:	build
+	$(CMD)
 
 clean:
 	$(EXIST) $(CMD) del $(CMD)
