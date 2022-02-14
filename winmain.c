@@ -25,6 +25,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
     RegisterClass(&wc);
 
+MessageBox(NULL, "hoge", "DEBUG", MB_OK);
+
+
     // Create the window.
 
     HWND hwnd = CreateWindowEx(
