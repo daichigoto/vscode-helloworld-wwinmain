@@ -23,7 +23,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.lpszClassName = CLASS_NAME;
 
     wc.style         = CS_HREDRAW | CS_VREDRAW;
-//    wc.cbClsExtra    = 0;
+    wc.cbClsExtra    = 0;
     wc.cbWndExtra    = 0;
     wc.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
     wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
