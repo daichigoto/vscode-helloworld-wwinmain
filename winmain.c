@@ -14,8 +14,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
-    // Register the window class.
-    const wchar_t CLASS_NAME[]  = L"Sample Window Class";
+    // ウィンドウクラスを登録
+    const wchar_t CLASS_NAME[]  = L"サンプルウィンドウクラス";
     
     WNDCLASS wc;
 
@@ -32,21 +32,23 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
     RegisterClass(&wc);
 
-    // Create the window.
-
+    // ウィンドウを作成
     HWND hwnd = CreateWindowEx(
-        0,                              // Optional window styles.
-        CLASS_NAME,                     // Window class
-        L"ウィンドウプログラミング学習",// Window text
-        WS_OVERLAPPEDWINDOW,            // Window style
+        0,                              // ウィンドウスタイル(オプション)
+        CLASS_NAME,                     // Windowクラス名
+        L"ウィンドウプログラミング学習",// Windowタイトル
+        WS_OVERLAPPEDWINDOW,            // Windowスタイル
 
-        // Size and position
-        CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT, CW_USEDEFAULT,
+        // サイズとポジション
+        CW_USEDEFAULT, 
+	CW_USEDEFAULT, 
+	CW_USEDEFAULT, 
+	CW_USEDEFAULT,
 
-        NULL,       // Parent window    
-        NULL,       // Menu
-        hInstance,  // Instance handle
-        NULL        // Additional application data
+        NULL,       // 親ウィンドウ
+        NULL,       // メニュー
+        hInstance,  // インスタンスハンドル
+        NULL        // 追加のアプリケーションデータ
         );
 
     if (hwnd == NULL)
@@ -56,8 +58,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 
     ShowWindow(hwnd, nCmdShow);
 
-    // Run the message loop.
-
+    // メッセージループを実行
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0))
     {
@@ -81,14 +82,11 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hwnd, &ps);
 
-
-
             FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
 
             EndPaint(hwnd, &ps);
         }
         return 0;
-
     }
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
 }
