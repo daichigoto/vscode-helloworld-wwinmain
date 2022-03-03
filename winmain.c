@@ -12,6 +12,9 @@
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
+/*
+ * ウィンドウプログラムエントリポイント関数
+ */
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
     // ウィンドウクラス名
@@ -73,7 +76,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
 }
 
 /*
- * ウィンドウプロシージャ
+ * ウィンドウプロシージャ関数
  */
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
