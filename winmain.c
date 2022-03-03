@@ -36,7 +36,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     // ウィンドウを作成
     HWND hwnd = CreateWindowEx(
         0,                              // ウィンドウスタイル(オプション)
-        CLASS_NAME,                     // Windowクラス名
+        /* CLASS_NAME,                     // Windowクラス名 */
+        L"ウィンドウ作成の学習用プログラム",  // Windowクラス名
         L"ウィンドウプログラミング学習",// Windowタイトル
         WS_OVERLAPPEDWINDOW,            // Windowスタイル
 
