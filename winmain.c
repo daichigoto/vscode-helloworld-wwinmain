@@ -29,7 +29,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
     wc.lpszMenuName  = NULL;
 //    wc.lpszClassName = CLASS_NAME;
-    wc.lpszClassName = "ウィンドウ作成の学習用プログラム";
+    wc.lpszClassName = L"ウィンドウ作成の学習用プログラム";
 
     RegisterClass(&wc);
 
