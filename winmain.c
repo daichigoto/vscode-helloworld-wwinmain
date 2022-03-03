@@ -14,9 +14,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine, int nCmdShow)
 {
-    // ウィンドウクラスを登録
-    const wchar_t CLASS_NAME[]  = L"サンプルウィンドウクラス";
-    
+    // ウィンドウクラス名
+    const wchar_t CLASS_NAME[]  = L"ウィンドウ作成の学習用プログラムクラス";
+
+    // ウィンドウクラス構造体を用意
     WNDCLASS wc;
 
     wc.style         = CS_HREDRAW | CS_VREDRAW;
@@ -28,18 +29,17 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
     wc.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
     wc.lpszMenuName  = NULL;
-//    wc.lpszClassName = CLASS_NAME;
-    wc.lpszClassName = L"ウィンドウ作成の学習用プログラム";
+    wc.lpszClassName = CLASS_NAME;
 
+    // ウィンドウクラス構造体を登録
     RegisterClass(&wc);
 
     // ウィンドウを作成
     HWND hwnd = CreateWindowEx(
-        0,                              // ウィンドウスタイル(オプション)
-        /* CLASS_NAME,                     // Windowクラス名 */
-        L"ウィンドウ作成の学習用プログラム",  // Windowクラス名
-        L"ウィンドウプログラミング学習",// Windowタイトル
-        WS_OVERLAPPEDWINDOW,            // Windowスタイル
+        0,                               // ウィンドウスタイル(オプション)
+        CLASS_NAME,                      // ウィンドウクラス名
+        L"ウィンドウプログラミング学習", // ウィンドウタイトル
+        WS_OVERLAPPEDWINDOW,             // ウィンドウスタイル
 
         // サイズとポジション
         CW_USEDEFAULT, 
@@ -58,6 +58,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
         return 0;
     }
 
+    // ウィンドウを表示
     ShowWindow(hwnd, nCmdShow);
 
     // メッセージループを実行
@@ -71,6 +72,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     return 0;
 }
 
+/*
+ * ウィンドウプロシージャ
+ */
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg)
