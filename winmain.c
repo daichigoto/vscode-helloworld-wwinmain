@@ -24,22 +24,11 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.cbClsExtra    = 0;
     wc.cbWndExtra    = 0;
     wc.hInstance     = hInstance;
-    wc.hIcon         = LoadIcon(NULL, IDI_APPLICATION);
-    wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
+    wc.hIcon         = NULL;
+    wc.hCursor       = LoadCursor(NULL, IDC_SIZENESW);
     wc.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
     wc.lpszMenuName  = NULL;
     wc.lpszClassName = CLASS_NAME;
-
-    /* wc.style         = CS_HREDRAW | CS_VREDRAW; */
-    /* wc.lpfnWndProc   = WindowProc; */
-    /* wc.cbClsExtra    = 0; */
-    /* wc.cbWndExtra    = 0; */
-    /* wc.hInstance     = hInstance; */
-    /* wc.hIcon         = NULL; */
-    /* wc.hCursor       = NULL; */
-    /* wc.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1); */
-    /* wc.lpszMenuName  = NULL; */
-    /* wc.lpszClassName = CLASS_NAME; */
 
     RegisterClass(&wc);
 
