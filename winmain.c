@@ -20,6 +20,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     // ウィンドウクラス名
     const wchar_t CLASS_NAME[]  = L"ウィンドウ作成の学習用プログラムクラス";
 
+    // ウィンドウタイトル
+    const wchar_t WINDOW_TITLE[]  = L"ウィンドウプログラミング学習";
+
     // ウィンドウクラス構造体を用意
     WNDCLASS wc;
 
@@ -34,26 +37,37 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.lpszMenuName  = NULL;
     wc.lpszClassName = CLASS_NAME;
 
+    // style         ウィンドウクラススタイル
+    // lpfnWndProc   ウィンドウプロシージャ
+    // cbClsExtra    クラス構造体以降の追加確保分指定
+    // cbWndExtra    ウィンドウインスタンス以降の追加確保分指定
+    // hInstance     ウィンドウプロシージャインスタンス
+    // hIcon         クラスアイコンハンドラ
+    // hCursor       クラスカーソルハンドラ
+    // hbrBackground ウィンドウ背景色
+    // lpszMenuName  クラスメニューのリソース名
+    // lpszClassName ウィンドウクラス名
+
     // ウィンドウクラス構造体を登録
     RegisterClass(&wc);
 
     // ウィンドウを作成
     HWND hwnd = CreateWindowEx(
-        0,                               // ウィンドウスタイル(オプション)
-        CLASS_NAME,                      // ウィンドウクラス名
-        L"ウィンドウプログラミング学習", // ウィンドウタイトル
-        WS_OVERLAPPEDWINDOW,             // ウィンドウスタイル
+        0,                   // 拡張ウィンドウスタイル
+        CLASS_NAME,          // ウィンドウクラス名
+        WINDOW_TITLE,        // ウィンドウタイトル
+        WS_OVERLAPPEDWINDOW, // ウィンドウスタイル
 
         // サイズとポジション
-        CW_USEDEFAULT, 
-	CW_USEDEFAULT, 
-	CW_USEDEFAULT, 
-	CW_USEDEFAULT,
+        CW_USEDEFAULT, 	     // X座標
+	CW_USEDEFAULT, 	     // Y座標
+	1200, 	             // 幅
+	800,	             // 高さ
 
-        NULL,       // 親ウィンドウ
-        NULL,       // メニュー
-        hInstance,  // インスタンスハンドル
-        NULL        // 追加のアプリケーションデータ
+        NULL,                // 親ウィンドウハンドラ
+        NULL,                // メニューハンドラ
+        hInstance,           // インスタンスハンドラ
+        NULL                 // 追加のアプリケーションデータ
         );
 
     if (hwnd == NULL)
