@@ -10,6 +10,8 @@
 
 #include <windows.h>
 
+#define	BACKGROUND_COLOR (HBRUSH) (COLOR_WINDOW + 1)
+
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 /*
@@ -33,7 +35,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     wc.hInstance     = hInstance;
     wc.hIcon         = NULL;
     wc.hCursor       = LoadCursor(NULL, IDC_ARROW);
-    wc.hbrBackground = (HBRUSH) (COLOR_WINDOW + 1);
+    wc.hbrBackground = BACKGROUND_COLOR;
     wc.lpszMenuName  = NULL;
     wc.lpszClassName = CLASS_NAME;
 
@@ -105,7 +107,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hwnd, &ps);
 
-            FillRect(hdc, &ps.rcPaint, (HBRUSH) (COLOR_WINDOW+1));
+            FillRect(hdc, &ps.rcPaint, BACKGROUND_COLOR);
 
             EndPaint(hwnd, &ps);
         }
