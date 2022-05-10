@@ -13,6 +13,7 @@
 #define	BACKGROUND_COLOR (HBRUSH) (COLOR_WINDOW + 1)
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+void Log_uMsg(LPCWSTR fPath, UINT uMsg);
 
 /*
  * ウィンドウプログラムエントリポイント関数
@@ -84,6 +85,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
     MSG msg;
     while (GetMessage(&msg, NULL, 0, 0))
     {
+        Log_uMsg(TEXT("log1.txt"), msg.message);
+
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
@@ -96,6 +99,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR pCmdLine
  */
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+    Log_uMsg(TEXT("log2.txt"), uMsg);
+
     switch (uMsg)
     {
     case WM_PAINT:
@@ -115,4 +120,26 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
     }
 
     return DefWindowProc(hwnd, uMsg, wParam, lParam);
+}
+
+/*
+ * MSG.messageを指定したファイルへ追記する関数
+ */
+void Log_uMsg(LPCWSTR fPath, UINT uMsg)
+{
+    HANDLE hFile;
+    hFile = CreateFile(
+        fPath, GENERIC_WRITE, 0, NULL,
+	OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL
+    );
+
+    SetFilePointer(hFile, 0, NULL, FILE_END);
+
+    TCHAR buf[1024];
+    wsprintf(buf, TEXT("message: %d\n"), uMsg);
+
+    DWORD dwNoW = 0;
+    WriteFile(hFile, buf, lstrlen(buf)*sizeof(TCHAR), &dwNoW, NULL);
+
+    CloseHandle(hFile);
 }
